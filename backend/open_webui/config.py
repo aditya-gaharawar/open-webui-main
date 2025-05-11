@@ -230,7 +230,7 @@ class AppConfig:
             self._state[key].save()
 
             if self._redis:
-                redis_key = f"open-webui:config:{key}"
+                redis_key = f"answerai:config:{key}"
                 self._redis.set(redis_key, json.dumps(self._state[key].value))
 
     def __getattr__(self, key):
@@ -239,7 +239,7 @@ class AppConfig:
 
         # If Redis is available, check for an updated value
         if self._redis:
-            redis_key = f"open-webui:config:{key}"
+            redis_key = f"answerai:config:{key}"
             redis_value = self._redis.get(redis_key)
 
             if redis_value is not None:
@@ -666,12 +666,12 @@ CUSTOM_NAME = os.environ.get("CUSTOM_NAME", "")
 
 if CUSTOM_NAME:
     try:
-        r = requests.get(f"https://api.openwebui.com/api/v1/custom/{CUSTOM_NAME}")
+        r = requests.get(f"https://api.answerai.com/api/v1/custom/{CUSTOM_NAME}")
         data = r.json()
         if r.ok:
             if "logo" in data:
                 WEBUI_FAVICON_URL = url = (
-                    f"https://api.openwebui.com{data['logo']}"
+                    f"https://api.answerai.com{data['logo']}"
                     if data["logo"][0] == "/"
                     else data["logo"]
                 )
@@ -684,7 +684,7 @@ if CUSTOM_NAME:
 
             if "splash" in data:
                 url = (
-                    f"https://api.openwebui.com{data['splash']}"
+                    f"https://api.answerai.com{data['splash']}"
                     if data["splash"][0] == "/"
                     else data["splash"]
                 )
@@ -795,13 +795,13 @@ if OLLAMA_BASE_URL == "" and OLLAMA_API_BASE_URL != "":
 if ENV == "prod":
     if OLLAMA_BASE_URL == "/ollama" and not K8S_FLAG:
         if USE_OLLAMA_DOCKER.lower() == "true":
-            # if you use all-in-one docker container (Open WebUI + Ollama)
+            # if you use all-in-one docker container (AnswerAI + Ollama)
             # with the docker build arg USE_OLLAMA=true (--build-arg="USE_OLLAMA=true") this only works with http://localhost:11434
             OLLAMA_BASE_URL = "http://localhost:11434"
         else:
             OLLAMA_BASE_URL = "http://host.docker.internal:11434"
     elif K8S_FLAG:
-        OLLAMA_BASE_URL = "http://ollama-service.open-webui.svc.cluster.local:11434"
+        OLLAMA_BASE_URL = "http://ollama-service.answerai.svc.cluster.local:11434"
 
 
 OLLAMA_BASE_URLS = os.environ.get("OLLAMA_BASE_URLS", "")
@@ -1765,7 +1765,7 @@ PGVECTOR_INITIALIZE_MAX_VECTOR_LENGTH = int(
 # Pinecone
 PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY", None)
 PINECONE_ENVIRONMENT = os.environ.get("PINECONE_ENVIRONMENT", None)
-PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "open-webui-index")
+PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "answerai-index")
 PINECONE_DIMENSION = int(os.getenv("PINECONE_DIMENSION", 1536))  # or 3072, 1024, 768
 PINECONE_METRIC = os.getenv("PINECONE_METRIC", "cosine")
 PINECONE_CLOUD = os.getenv("PINECONE_CLOUD", "aws")  # or "gcp" or "azure"

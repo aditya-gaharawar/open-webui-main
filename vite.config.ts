@@ -39,5 +39,9 @@ export default defineConfig({
 	},
 	worker: {
 		format: 'es'
+	},
+	server: {
+		host: true,
+		allowedHosts: ['work-1-fzomhnalymqiivyr.prod-runtime.all-hands.dev', 'work-2-fzomhnalymqiivyr.prod-runtime.all-hands.dev']
 	}
 });
