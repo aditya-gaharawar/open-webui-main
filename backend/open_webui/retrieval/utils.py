@@ -659,10 +659,10 @@ def generate_openai_batch_embeddings(
                 "Authorization": f"Bearer {key}",
                 **(
                     {
-                        "X-OpenWebUI-User-Name": user.name,
-                        "X-OpenWebUI-User-Id": user.id,
-                        "X-OpenWebUI-User-Email": user.email,
-                        "X-OpenWebUI-User-Role": user.role,
+                        "X-OpenAnswerAI-User-Name": user.name,
+                        "X-OpenAnswerAI-User-Id": user.id,
+                        "X-OpenAnswerAI-User-Email": user.email,
+                        "X-OpenAnswerAI-User-Role": user.role,
                     }
                     if ENABLE_FORWARD_USER_INFO_HEADERS and user
                     else {}
@@ -704,10 +704,10 @@ def generate_ollama_batch_embeddings(
                 "Authorization": f"Bearer {key}",
                 **(
                     {
-                        "X-OpenWebUI-User-Name": user.name,
-                        "X-OpenWebUI-User-Id": user.id,
-                        "X-OpenWebUI-User-Email": user.email,
-                        "X-OpenWebUI-User-Role": user.role,
+                        "X-OpenAnswerAI-User-Name": user.name,
+                        "X-OpenAnswerAI-User-Id": user.id,
+                        "X-OpenAnswerAI-User-Email": user.email,
+                        "X-OpenAnswerAI-User-Role": user.role,
                     }
                     if ENABLE_FORWARD_USER_INFO_HEADERS
                     else {}

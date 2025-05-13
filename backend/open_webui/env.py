@@ -105,9 +105,9 @@ for source in log_sources:
 
 log.setLevel(SRC_LOG_LEVELS["CONFIG"])
 
-WEBUI_NAME = os.environ.get("WEBUI_NAME", "Open WebUI")
-if WEBUI_NAME != "Open WebUI":
-    WEBUI_NAME += " (Open WebUI)"
+WEBUI_NAME = os.environ.get("WEBUI_NAME", "AnswerAI")
+if WEBUI_NAME != "AnswerAI":
+    WEBUI_NAME += " (AnswerAI)"
 
 WEBUI_FAVICON_URL = "https://openwebui.com/favicon.png"
 
@@ -258,7 +258,7 @@ if FROM_INIT_PY:
 if os.path.exists(f"{DATA_DIR}/ollama.db"):
     # Rename the file
     os.rename(f"{DATA_DIR}/ollama.db", f"{DATA_DIR}/webui.db")
-    log.info("Database migrated from Ollama-WebUI successfully.")
+    log.info("Database migrated from Ollama-AnswerAI successfully.")
 else:
     pass
 

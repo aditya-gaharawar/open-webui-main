@@ -270,7 +270,7 @@ from open_webui.config import (
     EXTERNAL_WEB_SEARCH_API_KEY,
     EXTERNAL_WEB_LOADER_URL,
     EXTERNAL_WEB_LOADER_API_KEY,
-    # WebUI
+    # AnswerAI
     WEBUI_AUTH,
     WEBUI_NAME,
     WEBUI_BANNERS,
@@ -296,7 +296,7 @@ from open_webui.config import (
     DEFAULT_ARENA_MODEL,
     MODEL_ORDER_LIST,
     EVALUATION_ARENA_MODELS,
-    # WebUI (OAuth)
+    # AnswerAI (OAuth)
     ENABLE_OAUTH_ROLE_MANAGEMENT,
     OAUTH_ROLES_CLAIM,
     OAUTH_EMAIL_CLAIM,
@@ -304,7 +304,7 @@ from open_webui.config import (
     OAUTH_USERNAME_CLAIM,
     OAUTH_ALLOWED_ROLES,
     OAUTH_ADMIN_ROLES,
-    # WebUI (LDAP)
+    # AnswerAI (LDAP)
     ENABLE_LDAP,
     LDAP_SERVER_LABEL,
     LDAP_SERVER_HOST,
@@ -474,7 +474,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Open WebUI",
+    title="AnswerAI",
     docs_url="/docs" if ENV == "dev" else None,
     openapi_url="/openapi.json" if ENV == "dev" else None,
     redoc_url=None,
@@ -1502,7 +1502,7 @@ async def get_manifest_json():
         return {
             "name": app.state.WEBUI_NAME,
             "short_name": app.state.WEBUI_NAME,
-            "description": "Open WebUI is an open, extensible, user-friendly interface for AI that adapts to your workflow.",
+            "description": "AnswerAI is an open, extensible, user-friendly interface for AI that adapts to your workflow.",
             "start_url": "/",
             "display": "standalone",
             "background_color": "#343541",
